@@ -2,7 +2,6 @@ pipeline {
   agent any
 
   stages{
-    
     stage('terraform init') {
       steps {
         dir("mainInstance/terraform/") {
