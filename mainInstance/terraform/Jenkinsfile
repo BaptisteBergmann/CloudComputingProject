@@ -5,12 +5,16 @@ pipeline {
     
     stage('terraform init') {
       steps {
-        sh 'terraform init'
+        dir("mainInstance/terraform/") {
+            sh 'terraform init'
+        }
       }
     }
     stage('terraform apply') {
       steps {
-        sh 'terraform apply -auto-approve -no-color'
+        dir("mainInstance/terraform/") {
+            sh 'terraform apply -auto-approve -no-color'
+        }
       }
     }
   }
