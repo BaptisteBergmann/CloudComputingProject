@@ -9,7 +9,7 @@ variable "api" {
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
     itype = "t2.micro"
-    keyname = "myseckey"
+    keyname = "log8415-API"
     secgroupname = "log8415-API"
     }
 }
@@ -21,7 +21,7 @@ variable "worker" {
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
     itype = "t2.medium"
-    keyname = "myseckey"
+    keyname = "log8415-Worker"
     secgroupname = "log8415-Worker"
     }
 }
