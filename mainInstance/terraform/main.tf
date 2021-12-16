@@ -3,9 +3,8 @@ region = "us-east-1"
 }
 
 variable "api" {
-  type = "map"
-  default = 
-    {
+  type = map(string)
+  default = {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
@@ -16,9 +15,8 @@ variable "api" {
 }
 
 variable "worker" {
-  type = "map"
-  default = 
-    {
+  type = map(string)
+  default = {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
