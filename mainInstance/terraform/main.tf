@@ -2,9 +2,7 @@ provider "aws" {
 region = "us-east-1"
 }
 
-variable "awsprops" {
-    type = "map"
-  api = {
+variable "api" {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
@@ -12,20 +10,19 @@ variable "awsprops" {
     keyname = "myseckey"
     secgroupname = "log8415-API"
   }
-  worker = {
+variable "worker" {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
     ami = "ami-04505e74c0741db8d"
     itype = "t2.medium"
     keyname = "myseckey"
     secgroupname = "log8415-Worker"
-  }
 }
 
 resource "aws_security_group" "log8415-API" {
-  name = lookup(var.awsprops.api, "secgroupname")
-  description = lookup(var.awsprops.api, "secgroupname")
-  vpc_id = lookup(var.awsprops.api, "vpc")
+  name = lookup(var.api, "secgroupname")
+  description = lookup(var.api, "secgroupname")
+  vpc_id = lookup(var.api, "vpc")
 
   // To Allow SSH Transport
   ingress {
@@ -56,9 +53,9 @@ resource "aws_security_group" "log8415-API" {
 }
 
 resource "aws_security_group" "log8415-WORKER" {
-  name = lookup(var.awsprops.worker, "secgroupname")
-  description = lookup(var.awsprops.worker, "secgroupname")
-  vpc_id = lookup(var.awsprops.worker, "vpc")
+  name = lookup(var.worker, "secgroupname")
+  description = lookup(var.worker, "secgroupname")
+  vpc_id = lookup(var.worker, "vpc")
 
   // To Allow SSH Transport
   ingress {
@@ -90,9 +87,9 @@ resource "aws_security_group" "log8415-WORKER" {
 
 
 resource "aws_instance" "log8415-API" {
-  ami = lookup(var.awsprops.api, "ami")
-  instance_type = lookup(var.awsprops.api, "itype")
-  key_name = lookup(var.awsprops.api, "keyname")
+  ami = lookup(var.api, "ami")
+  instance_type = lookup(var.api, "itype")
+  key_name = lookup(var.api, "keyname")
 
 
   vpc_security_group_ids = [
@@ -114,9 +111,9 @@ resource "aws_instance" "log8415-API" {
 }
 
 resource "aws_instance" "log8415-WORKER" {
-  ami = lookup(var.awsprops.worker, "ami")
-  instance_type = lookup(var.awsprops.worker, "itype")
-  key_name = lookup(var.awsprops.worker, "keyname")
+  ami = lookup(var.worker, "ami")
+  instance_type = lookup(var.worker, "itype")
+  key_name = lookup(var.worker, "keyname")
 
 
   vpc_security_group_ids = [
