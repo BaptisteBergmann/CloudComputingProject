@@ -2,6 +2,9 @@ pipeline {
   agent any
 
   stages{
+      stage('check') {
+        sh 'ls ~/.ssh/'
+    }
     stage('API') {
       steps {
         dir("mainInstance/ansible/") {
