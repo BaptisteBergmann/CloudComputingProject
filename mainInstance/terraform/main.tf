@@ -141,7 +141,10 @@ resource "aws_instance" "log8415-WORKER" {
   depends_on = [ aws_security_group.log8415-WORKER ]
 }
 
-output "ec2instance" {
+output "ec2instance log8415-API" {
   value = aws_instance.log8415-API.public_ip
+}
+output "ec2instance log8415-WORKER" {
   value = aws_instance.log8415-WORKER.public_ip
 }
+
