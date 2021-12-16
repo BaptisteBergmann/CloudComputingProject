@@ -1,5 +1,5 @@
 - name: Provision API Servers
-  hosts: api
+  hosts: APIServers
   tasks:
 
     - name: Install pip3
