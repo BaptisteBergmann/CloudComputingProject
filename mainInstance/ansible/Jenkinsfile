@@ -3,7 +3,9 @@ pipeline {
 
   stages{
       stage('check') {
-        sh 'ls ~/.ssh/'
+        steps {
+            sh 'ls ~/.ssh/'
+        }
     }
     stage('API') {
       steps {
