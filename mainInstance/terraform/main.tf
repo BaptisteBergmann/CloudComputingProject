@@ -3,14 +3,8 @@ region = "us-east-1"
 }
 
 variable "api" {
-  type = list(object({
-    region = string
-    vpc = string
-    itype = string
-    keyname = string
-    secgroupname = string
-  }))
-  default = [
+  type = "map"
+  default = 
     {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
@@ -19,18 +13,11 @@ variable "api" {
     keyname = "myseckey"
     secgroupname = "log8415-API"
     }
-  ]
 }
 
 variable "worker" {
-  type = list(object({
-    region = string
-    vpc = string
-    itype = string
-    keyname = string
-    secgroupname = string
-  }))
-  default = [
+  type = "map"
+  default = 
     {
     region = "us-east-1"
     vpc = "vpc-032556978aaa97712"
@@ -39,7 +26,6 @@ variable "worker" {
     keyname = "myseckey"
     secgroupname = "log8415-Worker"
     }
-  ]
 }
 
 resource "aws_security_group" "log8415-API" {
