@@ -19,7 +19,9 @@ variable "api" {
     keyname = "myseckey"
     secgroupname = "log8415-API"
     }
+  ]
 }
+
 variable "worker" {
   type = list(object({
     region = string
@@ -37,7 +39,8 @@ variable "worker" {
     keyname = "myseckey"
     secgroupname = "log8415-Worker"
     }
-  }
+  ]
+}
 
 resource "aws_security_group" "log8415-API" {
   name = lookup(var.api, "secgroupname")
