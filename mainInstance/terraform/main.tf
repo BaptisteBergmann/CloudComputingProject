@@ -142,5 +142,6 @@ resource "aws_instance" "log8415-WORKER" {
 }
 
 output "ec2instance" {
-  value = aws_instance.project-iac.public_ip
+  value = aws_instance.log8415-API.public_ip
+  value = aws_instance.log8415-WORKER.public_ip
 }
