@@ -1,6 +1,6 @@
 ---
 - name: Provision Worker Servers
-  hosts: webservers
+  hosts: worker
   tasks:
 
     - name: Install pip3
