@@ -27,9 +27,9 @@ variable "worker" {
 }
 
 resource "aws_security_group" "log8415-API" {
-  name = lookup(var.api, "secgroupname")
-  description = lookup(var.api, "secgroupname")
-  vpc_id = lookup(var.api, "vpc")
+  name = var.api, "secgroupname"
+  description = var.api, "secgroupname"
+  vpc_id = var.api, "vpc"
 
   // To Allow SSH Transport
   ingress {
@@ -60,9 +60,9 @@ resource "aws_security_group" "log8415-API" {
 }
 
 resource "aws_security_group" "log8415-WORKER" {
-  name = lookup(var.worker, "secgroupname")
-  description = lookup(var.worker, "secgroupname")
-  vpc_id = lookup(var.worker, "vpc")
+  name = var.worker, "secgroupname"
+  description = var.worker, "secgroupname"
+  vpc_id = var.worker, "vpc"
 
   // To Allow SSH Transport
   ingress {
@@ -94,9 +94,9 @@ resource "aws_security_group" "log8415-WORKER" {
 
 
 resource "aws_instance" "log8415-API" {
-  ami = lookup(var.api, "ami")
-  instance_type = lookup(var.api, "itype")
-  key_name = lookup(var.api, "keyname")
+  ami = var.api, "ami"
+  instance_type = var.api, "itype"
+  key_name = var.api, "keyname"
 
 
   vpc_security_group_ids = [
@@ -118,9 +118,9 @@ resource "aws_instance" "log8415-API" {
 }
 
 resource "aws_instance" "log8415-WORKER" {
-  ami = lookup(var.worker, "ami")
-  instance_type = lookup(var.worker, "itype")
-  key_name = lookup(var.worker, "keyname")
+  ami = var.worker, "ami"
+  instance_type = var.worker, "itype"
+  key_name = var.worker, "keyname"
 
 
   vpc_security_group_ids = [
