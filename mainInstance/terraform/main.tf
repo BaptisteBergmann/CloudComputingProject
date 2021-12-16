@@ -2,6 +2,18 @@ provider "aws" {
 region = "us-east-1"
 }
 
+variable "configurator" {
+  type = map(string)
+  default = {
+    region = "us-east-1"
+    vpc = "vpc-032556978aaa97712"
+    ami = "ami-04505e74c0741db8d"
+    itype = "t2.micro"
+    keyname = "log8415-CONFIGURATOR"
+    secgroupname = "log8415-CONFIGURATOR"
+    }
+}
+
 variable "api" {
   type = map(string)
   default = {
@@ -92,6 +104,39 @@ resource "aws_security_group" "log8415-WORKER" {
   }
 }
 
+resource "aws_security_group" "log8415-CONFIGURATOR" {
+  name = var.configurator.secgroupname
+  description = var.configurator.secgroupname
+  vpc_id = var.configurator.vpc
+
+  // To Allow SSH Transport
+  ingress {
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  // To Allow Port 80 Transport
+  ingress {
+    from_port = 80
+    protocol = "tcp"
+    to_port = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 
 resource "aws_instance" "log8415-API" {
   ami = var.api.ami
@@ -141,10 +186,39 @@ resource "aws_instance" "log8415-WORKER" {
   depends_on = [ aws_security_group.log8415-WORKER ]
 }
 
+resource "aws_instance" "log8415-CONFIGURATOR" {
+  ami = var.configurator.ami
+  instance_type = var.configurator.itype
+  key_name = var.configurator.keyname
+
+
+  vpc_security_group_ids = [
+    aws_security_group.log8415-CONFIGURATOR.id
+  ]
+  root_block_device {
+    delete_on_termination = true
+    volume_size = 8
+    volume_type = "gp2"
+  }
+  tags = {
+    Name ="SERVER01"
+    Environment = "DEV"
+    OS = "UBUNTU"
+    Managed = "CONFIGURATOR"
+  }
+
+  depends_on = [ aws_security_group.log8415-CONFIGURATOR ]
+}
+
+
 output "ec2instance_log8415-API" {
   value = aws_instance.log8415-API.public_ip
 }
 output "ec2instance_log8415-WORKER" {
   value = aws_instance.log8415-WORKER.public_ip
 }
+output "ec2instance_log8415-WORKER" {
+  value = aws_instance.log8415-CONFIGURATOR.public_ip
+}
+
 
