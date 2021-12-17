@@ -1,5 +1,5 @@
 - name: Provision Worker Servers
-  hosts: dbServers
+  hosts: WorkerServers
   tasks:
 
     - name: Install pip3
