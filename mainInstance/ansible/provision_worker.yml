@@ -29,6 +29,9 @@
         systemctl enable docker
       become: yes
 
+    - name: add param in ssh
+      command: echo "StrictHostKeyChecking no" | sudo tee -a /etc/ssh/ssh_config
+
     - name: Copy files from foo to bar
       copy: src=~/.ssh/id_ed25519 dest=/home/ubuntu/.ssh/id_ed25519
 
