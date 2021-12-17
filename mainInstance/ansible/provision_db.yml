@@ -1,4 +1,4 @@
-- name: Provision API Servers
+- name: Provision DB Servers
   hosts: dbServers
   tasks:
 
