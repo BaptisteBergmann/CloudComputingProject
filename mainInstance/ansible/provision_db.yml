@@ -41,7 +41,7 @@
       command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
 
     - name: build docker
-      command: chdir=/home/ubuntu/qmk_web_stack/API sudo docker-compose build
+      command: chdir=/home/ubuntu/qmk_web_stack/Master sudo docker-compose build
 
     - name: run docker
-      command: chdir=/home/ubuntu/qmk_web_stack/API sudo docker-compose up -d
+      command: chdir=/home/ubuntu/qmk_web_stack/Master sudo docker-compose up -d
