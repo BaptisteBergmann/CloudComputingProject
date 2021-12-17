@@ -25,6 +25,12 @@ resource "aws_security_group" "log8415-DB" {
 
   // To Allow Port 80 Transport
   ingress {
+    from_port = 80
+    protocol = "tcp"
+    to_port = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
     from_port = 5000
     protocol = "tcp"
     to_port = 5003
@@ -76,6 +82,35 @@ resource "aws_instance" "log8415-DB" {
   }
 
   depends_on = [ aws_security_group.log8415-DB ]
+}
+
+data "aws_subnet_ids" "subnet_ids" {
+  vpc_id = var.api.vpc
+}
+data "aws_subnet" "test_subnet" {
+  count = "${length(data.aws_subnet_ids.subnet_ids.ids)}"
+  id    = "${tolist(data.aws_subnet_ids.subnet_ids.ids)[count.index]}"
+}
+
+
+resource "aws_elb" "log8415-DB-ELB" {
+  name = "log8415-API-elb"
+  subnets = "${data.aws_subnet.test_subnet.*.id}"
+  security_groups = [aws_security_group.log8415-DB.id]
+  instances       = [aws_instance.log8415-DB.id]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+  listener {
+    instance_port     = 9000
+    instance_protocol = "http"
+    lb_port           = 9000
+    lb_protocol       = "http"
+  }
 }
 
 output "ec2instance_log8415-DB" {

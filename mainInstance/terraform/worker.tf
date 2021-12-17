@@ -57,6 +57,21 @@ resource "aws_instance" "log8415-WORKER" {
   depends_on = [ aws_security_group.log8415-WORKER ]
 }
 
+
+resource "aws_elb" "log8415-WORKER-ELB" {
+  name = "log8415-WORKER-elb"
+  subnets = "${data.aws_subnet.test_subnet.*.id}"
+  security_groups = [aws_security_group.log8415-WORKER.id]
+  instances       = [aws_instance.log8415-WORKER.id]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+}
+
 output "ec2instance_log8415-WORKER" {
   value = aws_instance.log8415-WORKER.public_ip
 }
