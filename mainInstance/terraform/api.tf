@@ -76,7 +76,7 @@ resource "aws_instance" "log8415-API" {
 }
 
 data "aws_subnet_ids" "subnet_ids" {
-  vpc_id = "default"
+  vpc_id = var.api.vpc
 }
 data "aws_subnet" "test_subnet" {
   count = "${length(data.aws_subnet_ids.subnet_ids.ids)}"
