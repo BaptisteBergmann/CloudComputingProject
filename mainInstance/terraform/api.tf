@@ -87,7 +87,7 @@ data "aws_subnet" "test_subnet" {
 resource "aws_elb" "log8415-API-ELB" {
   name = "log8415-API-elb"
   subnets = "${data.aws_subnet.test_subnet.*.id}"
-  security_groups = [aws_security_group.log8415-API]
+  security_groups = [aws_security_group.log8415-API.id]
   instances       = "${aws_instance.log8415-API.*.id}"
 
   listener {
