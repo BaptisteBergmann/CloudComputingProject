@@ -3,3 +3,6 @@ ec2-54-159-218-165.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib
 
 [WorkerServers]
 ec2-54-167-156-43.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu
+
+[dbServers]
+ec2-54-167-156-43.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu

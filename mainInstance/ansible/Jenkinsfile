@@ -2,10 +2,12 @@ pipeline {
   agent any
 
   stages{
-      stage('check') {
-        steps {
-            sh 'ls ~/.ssh/'
+    stage('DB') {
+      steps {
+        dir("mainInstance/ansible/") {
+            sh 'ansible-playbook -i inventory provision_db.yml'
         }
+      }
     }
     stage('API') {
       steps {

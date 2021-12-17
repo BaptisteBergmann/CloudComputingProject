@@ -1,4 +1,3 @@
----
 - name: Provision Worker Servers
   hosts: WorkerServers
   tasks:
@@ -19,8 +18,30 @@
         name: docker.io
       become: yes
 
+    - name: Install docker-compose
+      apt:
+        name: docker-compose
+      become: yes
+
     - name: Start Docker
       shell: |
         systemctl start docker
         systemctl enable docker
       become: yes
+
+    - name: Clone github repository
+     git:
+       repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
+       dest: /home/ubuntu/
+       clone: yes
+       update: yes
+       recursive: yes
+
+    - name: fix submodules
+      command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
+
+    - name: build docker
+      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose build
+
+    - name: run docker
+      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose up -d
