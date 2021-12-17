@@ -37,9 +37,6 @@
        update: yes
        recursive: yes
 
-    - name: fix submodules
-      command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
-
     - name: build docker
       command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose build
 

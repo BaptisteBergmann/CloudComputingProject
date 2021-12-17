@@ -38,9 +38,6 @@
        recursive: yes
 
     - name: build docker
-      command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
-
-    - name: build docker
       command: chdir=/home/ubuntu/qmk_web_stack/API sudo docker-compose build
 
     - name: run docker
