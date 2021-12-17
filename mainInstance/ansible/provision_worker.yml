@@ -32,7 +32,7 @@
     - name: Clone github repository
       git:
        repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
-       dest: /home/ubuntu/
+       dest: /home/ubuntu/qmk_web_stack
        clone: yes
        update: yes
        recursive: yes
