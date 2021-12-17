@@ -30,13 +30,13 @@
       become: yes
 
     - name: Clone github repository
-     git:
+      git:
        repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
        dest: /home/ubuntu/
        clone: yes
        update: yes
        recursive: yes
-       
+
     - name: build docker
       command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
 

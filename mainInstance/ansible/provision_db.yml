@@ -30,7 +30,7 @@
       become: yes
 
     - name: Clone github repository
-     git:
+      git:
        repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
        dest: /home/ubuntu/
        clone: yes
