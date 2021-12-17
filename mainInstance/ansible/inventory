@@ -1,9 +1,9 @@
 [APIServers]
-ec2-34-226-138-184.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
-ec2-3-83-252-14.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
+ec2-3-84-103-93.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
+ec2-54-86-21-67.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
 
 [WorkerServers]
-ec2-3-86-102-245.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu
+ec2-44-202-19-216.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu
 
 [dbServers]
-ec2-54-152-0-61.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-DB.pem ansible_user=ubuntu
+ec2-18-207-221-22.compute-1.amazonaws.com ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-DB.pem ansible_user=ubuntu
