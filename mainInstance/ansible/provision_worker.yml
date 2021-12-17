@@ -29,6 +29,12 @@
         systemctl enable docker
       become: yes
 
+    - name: Copy files from foo to bar
+      copy: src=~/.ssh/id_ed25519 dest=/home/ubuntu/.ssh/id_ed25519
+
+    - name: chmod
+      command: chmod 600 /home/ubuntu/.ssh/id_ed25519
+
     - name: Clone github repository
       git:
        repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
