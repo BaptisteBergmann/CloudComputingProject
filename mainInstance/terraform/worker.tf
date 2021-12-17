@@ -10,7 +10,6 @@ variable "worker" {
     }
 }
 
-
 resource "aws_security_group" "log8415-WORKER" {
   name = var.worker.secgroupname
   description = var.worker.secgroupname
