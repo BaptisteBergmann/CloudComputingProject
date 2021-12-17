@@ -38,7 +38,7 @@
        recursive: yes
 
     - name: build docker
-      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose build
+      command: chdir=/home/ubuntu/qmk_web_stack/Worker sudo docker-compose build
 
     - name: run docker
-      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose up -d
+      command: chdir=/home/ubuntu/qmk_web_stack/Worker sudo docker-compose up -d
