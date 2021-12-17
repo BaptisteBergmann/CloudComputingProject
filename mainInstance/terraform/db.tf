@@ -1,7 +1,3 @@
-provider "aws" {
-region = "us-east-1"
-}
-
 variable "db" {
   type = map(string)
   default = {
