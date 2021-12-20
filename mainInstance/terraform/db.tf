@@ -121,6 +121,6 @@ output "ec2instance_log8415-DB" {
 }
 
 output "awsElb_log8415-DB" {
-  value = aws_elb.log8415-DB-ELB
+  value = aws_elb.log8415-DB-ELB.dns_name
 }
 
