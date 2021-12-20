@@ -1,5 +1,5 @@
 - name: Provision Worker Servers
-  hosts: dbServers
+  hosts: WorkerServers
   tasks:
 
     - name: Install pip3
@@ -30,18 +30,18 @@
       become: yes
 
     - name: Clone github repository
-     git:
+      git:
        repo: https://github.com/BaptisteBergmann/qmk_web_stack.git
-       dest: /home/ubuntu/
+       dest: /home/ubuntu/qmk_web_stack
        clone: yes
        update: yes
        recursive: yes
 
-    - name: fix submodules
+    - name: Fix submodules
       command: chdir=/home/ubuntu/qmk_web_stack ./fix-submodules.sh 
 
     - name: build docker
-      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose build
+      command: chdir=/home/ubuntu/qmk_web_stack/Worker sudo docker-compose build
 
     - name: run docker
-      command: chdir=/home/ubuntu/qmk_web_stack/WORKER sudo docker-compose up -d
+      command: chdir=/home/ubuntu/qmk_web_stack/Worker sudo docker-compose up -d
