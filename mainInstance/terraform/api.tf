@@ -75,6 +75,7 @@ resource "aws_instance" "log8415-API" {
   depends_on = [ aws_security_group.log8415-API ]
 }
 
+
 data "aws_subnet_ids" "subnet_ids" {
   vpc_id = var.api.vpc
 }
@@ -82,7 +83,6 @@ data "aws_subnet" "test_subnet" {
   count = "${length(data.aws_subnet_ids.subnet_ids.ids)}"
   id    = "${tolist(data.aws_subnet_ids.subnet_ids.ids)[count.index]}"
 }
-
 
 resource "aws_elb" "log8415-API-ELB" {
   name = "log8415-API-elb"
