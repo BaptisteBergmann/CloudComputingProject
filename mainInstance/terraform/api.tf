@@ -108,7 +108,7 @@ output "ec2instance_log8415-API" {
   value = "${aws_instance.log8415-API.*.public_ip}"
 }
 
-output "awsElb_log8415-DB" {
+output "awsElb_log8415-API" {
   value = aws_elb.log8415-API-ELB
 }
 
