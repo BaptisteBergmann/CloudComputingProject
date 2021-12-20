@@ -78,11 +78,11 @@ resource "aws_instance" "log8415-DB" {
   depends_on = [ aws_security_group.log8415-DB ]
 }
 
-resource "aws_elb" "log8415-API-ELB" {
-  name = "log8415-API-elb"
+resource "aws_elb" "log8415-DB-ELB" {
+  name = "log8415-DB-elb"
   subnets = "${data.aws_subnet.test_subnet.*.id}"
-  security_groups = [aws_security_group.log8415-API.id]
-  instances       = "${aws_instance.log8415-API.*.id}"
+  security_groups = [aws_security_group.log8415-DB.id]
+  instances       = "${aws_instance.log8415-DB.*.id}"
 
   listener {
     instance_port     = 6379
@@ -120,4 +120,7 @@ output "ec2instance_log8415-DB" {
   value = aws_instance.log8415-DB.public_ip
 }
 
+output "awsElb_log8415-DB" {
+  value = aws_elb.log8415-DB-ELB
+}
 
