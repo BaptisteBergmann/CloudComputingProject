@@ -109,6 +109,7 @@ resource "aws_elb" "log8415-API-ELB" {
     target              = "HTTP:80/"
     interval            = 30
   }
+  
 }
 
 output "ec2instance_log8415-API" {
