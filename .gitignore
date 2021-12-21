@@ -1,5 +1,5 @@
 *.pem
-# terraform
+# terraforms
 .terraform/
 
 # Byte-compiled / optimized / DLL files
