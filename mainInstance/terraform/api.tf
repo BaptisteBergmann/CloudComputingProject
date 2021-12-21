@@ -10,7 +10,6 @@ variable "api" {
     count = "2"
     }
 }
-
 resource "aws_security_group" "log8415-API" {
   name = var.api.secgroupname
   description = var.api.secgroupname
