@@ -1,9 +1,9 @@
 [APIServers]
-54.84.36.87 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
-54.91.190.196 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
+54.173.63.132 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
+52.23.241.78 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-API.pem ansible_user=ubuntu
 
 [WorkerServers]
-3.80.211.130 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu
+54.167.134.243 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-WORKER.pem ansible_user=ubuntu
 
 [dbServers]
-3.84.14.244 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-DB.pem ansible_user=ubuntu
+3.86.103.54 ansible_ssh_private_key_file=/var/lib/jenkins/.ssh/log8415-DB.pem ansible_user=ubuntu
