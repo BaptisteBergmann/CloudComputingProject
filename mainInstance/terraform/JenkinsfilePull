@@ -9,5 +9,12 @@ pipeline {
         }
       }
     }
+    stage('terraform Plan') {
+      steps {
+        dir("mainInstance/terraform/") {
+            sh 'terraform plan'
+        }
+      }
+    }
   }
 }
