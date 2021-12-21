@@ -115,7 +115,6 @@ resource "aws_elb" "log8415-DB-ELB" {
     lb_protocol       = "tcp"
   }
 }
-
 output "ec2instance_log8415-DB" {
   value = aws_instance.log8415-DB.public_ip
 }

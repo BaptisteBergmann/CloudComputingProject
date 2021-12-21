@@ -1,0 +1,13 @@
+pipeline {
+  agent any
+
+  stages{
+    stage('Worker') {
+      steps {
+        dir("mainInstance/ansible/") {
+            sh 'ansible-playbook -i inventory provision_worker.yml'
+        }
+      }
+    }
+  }
+}
