@@ -1,0 +1,13 @@
+pipeline {
+  agent any
+
+  stages{
+    stage('DB') {
+      steps {
+        dir("mainInstance/ansible/") {
+            sh 'ansible-playbook -i inventory provision_db.yml'
+        }
+      }
+    }
+  }
+}
